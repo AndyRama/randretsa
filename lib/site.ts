@@ -26,10 +26,10 @@ export const nav = [
 ] as const;
 
 export const prestations = [
-  { label: "Portes", href: "/renovation#portes" },
-  { label: "Volets", href: "/renovation#volets" },
-  { label: "Fenêtres", href: "/renovation#fenetres" },
-  { label: "Meubles", href: "/sur-mesure" },
-  { label: "Placards", href: "/sur-mesure" },
-  { label: "Dépannage", href: "/renovation#depannage" },
+  { label: "Portes", href: "/portes" },
+  { label: "Volets", href: "/volets" },
+  { label: "Fenêtres", href: "/fenetres" },
+  { label: "Meubles", href: "/meubles" },
+  { label: "Placards", href: "/placards" },
+  { label: "Dépannage", href: "/depannage" },
 ] as const;
