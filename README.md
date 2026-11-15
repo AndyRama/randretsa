@@ -9,7 +9,13 @@ npm run build
 ```
 
 ## Pages
-`/` · `/sur-mesure` · `/renovation` · `/realisations` · `/a-propos` · `/contact` · `/mentions-legales` · `/confidentialite`
+`/` · `/sur-mesure` · `/renovation` · `/portes` · `/volets` · `/fenetres` · `/meubles` · `/placards` · `/depannage` · `/realisations` · `/a-propos` · `/contact` · `/mentions-legales` · `/confidentialite`
+
+Les six pages de prestations reprennent les captures fournies, avec FAQ et liens dédiés. `docs/service-sources.md` distingue les textes visibles, les réponses de FAQ rédigées à partir de ces informations et les limites des visuels. Les avant/après sont explicitement statiques : les deux photos originales nécessaires à un curseur réel ne sont pas disponibles.
+
+```bash
+node --test --test-concurrency=1 tests/*.test.cjs
+```
 
 ## Où modifier quoi
 - `lib/site.ts` : téléphone, adresse, horaires, note Google, navigation (`googleUrl` et email à renseigner)

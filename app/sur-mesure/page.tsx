@@ -5,6 +5,7 @@ import { Faq } from "@/components/Faq";
 import { CtaBand } from "@/components/CtaBand";
 import { faqMeubles, meublesList, prendEnCharge, reviews } from "@/lib/content";
 import { site } from "@/lib/site";
+import { services } from "@/lib/services";
 
 export const metadata: Metadata = {
   title: "Meuble sur mesure à Bordeaux : bureaux, tables, étagères",
@@ -82,13 +83,13 @@ export default function SurMesurePage() {
           <div>
             <Eyebrow>Bon à savoir</Eyebrow>
             <h2 className="mb-6 mt-2 text-[26px]">Vos questions sur ce sujet</h2>
-            <Faq items={faqMeubles} />
+            <Faq items={services.meubles.faqs} />
           </div>
           <aside className="self-start border border-line bg-paper p-6 md:p-8">
             <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-muted">Autres prestations</p>
             <ul className="mt-4 divide-y divide-line border-y border-line">
               {["Portes", "Volets", "Fenêtres"].map((p) => (
-                <li key={p}><Link href={`/renovation#${p.toLowerCase().replace("ê", "e")}`} className="flex items-center justify-between py-3.5 text-[14px] hover:text-moss">{p}<span aria-hidden className="text-[10px] text-muted">↗</span></Link></li>
+                <li key={p}><Link href={`/${p.toLowerCase().replace("ê", "e")}`} className="flex items-center justify-between py-3.5 text-[14px] hover:text-moss">{p}<span aria-hidden className="text-[10px] text-muted">↗</span></Link></li>
               ))}
             </ul>
             <Button href="/realisations" variant="ghost" className="mt-6 !px-4 !py-2.5 !text-[12px]">Voir les réalisations</Button>

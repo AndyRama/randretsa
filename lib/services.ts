@@ -1,0 +1,400 @@
+import type { FaqItem } from "@/components/Faq";
+import { reviews } from "@/lib/content";
+
+export type Service = {
+  slug: string; label: string; eyebrow: string; title: string; intro: string;
+  image: string; alt: string; paragraphs: string[]; bullets: string[];
+  panels: { title: string; text: string }[]; faqs: FaqItem[];
+  reviewKeys: string[]; related: string[]; comparison: number | null; bulletTitle: string;
+};
+
+// Existing screenshot-derived excerpts; not a fresh Google verification.
+export const serviceReviews: Record<string, { tag: string; text: string; date: string }> = {
+  reactivite: reviews[0], devis: reviews[1], suivi: reviews[2], conseils: reviews[3],
+  sauve: { tag: "Sauvé", text: "Deux autres menuisiers m'avaient dit que la porte était trop abîmée. Il l'a reprise, les moulures sont identiques à l'origine. Je ne pensais pas ça possible.", date: "Septembre 2024" },
+};
+
+// Visible copy is transcribed from the six supplied screenshots. FAQ answers are
+// conservative editorial copy, not recovered hidden answers. See docs/service-sources.md.
+export const services: Record<string, Service> = {
+  portes: {
+  "slug": "portes",
+  "label": "Portes",
+  "eyebrow": "Rénovation · Portes",
+  "title": "Restauration de portes à Bordeaux : sauver l'ancien plutôt que le remplacer",
+  "intro": "Porte d'immeuble, porte d'entrée de maison bordelaise, porte de cave : quand le bois veut encore tenir, il se répare. Une porte d'origine restaurée garde ce qu'aucune porte neuve ne retrouvera.",
+  "image": "/images/porte.jpg",
+  "alt": "Porte d'entrée ancienne en bois dans une façade de pierre",
+  "paragraphs": [
+    "Les portes bordelaises ont souvent cinquante, parfois cent ans. Elles ont travaillé : gonds fatigués, bas de porte gonflé par l'humidité, peinture qui cloque, serrure qui ne claque plus. Le réflexe est de tout changer. Ce n'est presque jamais nécessaire.",
+    "Je démonte, je regarde ce qui est réellement atteint, et je vous dis franchement ce qui peut être conservé. Si une porte est trop abîmée, je vous le dis aussi — c'est plus honnête que de facturer une reprise qui ne tiendra pas."
+  ],
+  "bullets": [
+    "Restauration de portes d'entrée et de portes d'immeuble",
+    "Isolation et étanchéité de portes de 50 ans et plus",
+    "Découpe de porte ancienne pour y insérer une vitre",
+    "Remplacement à l'identique d'une porte de cave avec moulures",
+    "Pose et réglage de serrure sur porte ancienne",
+    "Réparation de porte vitrée intérieure"
+  ],
+  "panels": [
+    {
+      "title": "Isolation et étanchéité",
+      "text": "Sur les portes anciennes, l'air et l'eau passent par le bas de porte, les feuillures et les joints. Je reprends les bois pourris, je remets le jeu à niveau et je pose des joints adaptés au bâti ancien. On gagne en confort sans dénaturer la façade."
+    },
+    {
+      "title": "Découpe pour insérer une vitre",
+      "text": "Beaucoup de portes d'entrée anciennes sont pleines et sombres. Découper proprement pour y insérer une vitre redonne de la lumière sans le froid. La découpe respecte le cadre et les moulures — c'est un travail de précision, pas une simple ouverture."
+    },
+    {
+      "title": "Porte de cave remplacée à l'identique",
+      "text": "Quand une porte de cave est réellement hors d'usage, je la refais avec ses moulures et ses proportions d'origine. À l'arrivée, on ne voit pas la différence."
+    },
+    {
+      "title": "Serrure et quincaillerie",
+      "text": "Pose ou remplacement de serrure sur porte ancienne, réglage de la targette, poignée laiton reposée. Une porte qui ferme bien, sans forcer, c'est souvent le détail qui change tout au quotidien."
+    }
+  ],
+  "reviewKeys": [
+    "devis",
+    "sauve"
+  ],
+  "related": [
+    "volets",
+    "fenetres",
+    "meubles"
+  ],
+  "comparison": 0,
+  "bulletTitle": "Ce que je prends en charge",
+  "faqs": [
+    {
+      "question": "Faut-il forcément déposer la porte pour la restaurer ?",
+      "answer": "Cela dépend de l'état de la porte et du travail à réaliser. Le démontage et les parties à conserver sont examinés avant de proposer la reprise."
+    },
+    {
+      "question": "Une porte très abîmée peut-elle vraiment être sauvée ?",
+      "answer": "Certaines portes abîmées peuvent être restaurées en conservant leur bois d'origine. Si l'état ne permet pas une reprise durable, Édouard vous le dit avant les travaux."
+    },
+    {
+      "question": "Combien de temps pour une restauration de porte ?",
+      "answer": "Le délai dépend de l'état du bois, des reprises et de la finition. Il est précisé avec le devis après examen de la porte."
+    },
+    {
+      "question": "Intervenez-vous sur les portes d'immeuble en copropriété ?",
+      "answer": "La restauration de portes d'immeuble fait partie des prestations. Décrivez la porte et les travaux envisagés pour préciser le projet avant toute intervention."
+    }
+  ]
+},
+  volets: {
+  "slug": "volets",
+  "label": "Volets",
+  "eyebrow": "Rénovation · Volets",
+  "title": "Réparation et restauration de volets bois à Bordeaux",
+  "intro": "Un volet qui bat, une persienne qui ne coulisse plus, une lame cassée : souvent trois fois rien à réparer, et beaucoup de chaleur en moins dans la maison quand on attend.",
+  "image": "/images/avant-apres-volets.jpg",
+  "alt": "Visuel comparatif statique de volets persiennés avant et après restauration",
+  "paragraphs": [
+    "Les grands volets persiennés des façades bordelaises sont exposés plein sud, plein ouest, à la pluie et au vent. Les lames sèchent, les tenons prennent du jeu, les ferrures rouillent. Repris à temps, un volet dure encore des décennies.",
+    "Je travaille à l'atelier ou sur place selon les cas. Les lames sont refaites à la section d'origine, dans une essence qui travaille comme l'ancienne, pour que le volet reste homogène."
+  ],
+  "bullets": [
+    "Restauration de grands volets persiennés",
+    "Réparation de volets intérieurs",
+    "Remplacement de lames à l'identique",
+    "Réglage, gonds et remplacement des ferrures",
+    "Préparation et finition (peinture, lasure)"
+  ],
+  "panels": [
+    {
+      "title": "Grands volets persiennés",
+      "text": "Démontage, remplacement des lames cassées ou vrillées, reprise des assemblages, réglage des charnières. La peinture ou la lasure est appliquée après une préparation complète, pas par-dessus l'ancienne."
+    },
+    {
+      "title": "Volets intérieurs",
+      "text": "Volets de salon, persiennes intérieures, bois qui frottent : réglage, remplacement d'une lame, reprise d'un gond. Un volet intérieur qui coulisse bien, c'est aussi un volet qu'on utilise vraiment."
+    },
+    {
+      "title": "Ferrures et quincaillerie",
+      "text": "Gonds, targettes, espagnolettes : je remplace ce qui fatigue et je graisse ce qui peut être conservé. Sur une façade ancienne, la quincaillerie d'origine fait partie du charme."
+    }
+  ],
+  "reviewKeys": [
+    "sauve"
+  ],
+  "related": [
+    "portes",
+    "fenetres",
+    "meubles"
+  ],
+  "comparison": 1,
+  "bulletTitle": "Ce que je prends en charge",
+  "faqs": [
+    {
+      "question": "Réparez-vous les volets sur place ou à l'atelier ?",
+      "answer": "Le travail se fait à l'atelier ou sur place selon les cas. L'état des lames, des assemblages et des ferrures permet de choisir la solution adaptée."
+    },
+    {
+      "question": "Peut-on garder la peinture d'origine ?",
+      "answer": "L'état de la finition est examiné avec celui du bois. Une peinture ou une lasure neuve est appliquée après une préparation complète, pas simplement par-dessus l'ancienne."
+    },
+    {
+      "question": "Combien de temps pour restaurer une paire de volets ?",
+      "answer": "Le délai varie selon les lames à refaire, les assemblages et la finition. Il est précisé après examen des volets, sans durée standard annoncée à l'avance."
+    }
+  ]
+},
+  fenetres: {
+  "slug": "fenetres",
+  "label": "Fenêtres",
+  "eyebrow": "Rénovation · Fenêtres",
+  "title": "Réparation de fenêtres bois à Bordeaux",
+  "intro": "Une fenêtre forcée, un carreau cassé, un ouvrant qui ne joint plus : ce sont des réparations qui n'attendent pas, surtout quand la maison reste ouverte sur l'extérieur.",
+  "image": "/images/atelier.jpg",
+  "alt": "Établi de menuisier devant une fenêtre dans l'atelier",
+  "paragraphs": [
+    "Une effraction laisse toujours plus de dégâts que le seul vitrage : le bois du châssis est marqué, la crémone forcée, l'ouvrant faussé. Réparer proprement, c'est remettre la fenêtre d'aplomb et retrouver une fermeture franche.",
+    "Je regarde systématiquement si l'ouvrant peut être conservé. Changer une fenêtre ancienne pour un modèle standard, c'est souvent perdre le charme de la façade et de la lumière."
+  ],
+  "bullets": [
+    "Réparation de fenêtre après effraction",
+    "Réparation de porte vitrée et de porte-fenêtre",
+    "Remplacement de vitrage sur châssis bois",
+    "Reprise d'ouvrant, de crémone et de quincaillerie",
+    "Remplacement de bois abîmé et reprise des joints"
+  ],
+  "panels": [
+    {
+      "title": "Après effraction",
+      "text": "Reprise du châssis, remplacement du vitrage, remise en état ou changement de la crémone. Si l'ouvrant est voilé, je le redresse ou je le refais à l'identique."
+    },
+    {
+      "title": "Portes vitrées et portes-fenêtres",
+      "text": "Réparation d'une porte vitrée qui ne ferme plus, remplacement d'un vitrage, reprise du bas de porte. Le bois et le verre sont traités ensemble pour que l'ensemble redevienne étanche."
+    },
+    {
+      "title": "Bois abîmé et étanchéité",
+      "text": "Bas de fenêtre pourri, feuillure attaquée, joint qui laisse passer l'air : je remplace la partie atteinte en gardant le reste du bâti, puis je refais les joints."
+    }
+  ],
+  "reviewKeys": [
+    "reactivite",
+    "devis"
+  ],
+  "related": [
+    "portes",
+    "volets",
+    "meubles"
+  ],
+  "comparison": null,
+  "bulletTitle": "Ce que je prends en charge",
+  "faqs": [
+    {
+      "question": "Intervenez-vous vite après une effraction ?",
+      "answer": "Appelez pour décrire les dégâts et le besoin de sécurisation. Édouard vous indique ce qui est possible selon la situation, sans garantir un passage immédiat."
+    },
+    {
+      "question": "Faut-il changer toute la fenêtre ?",
+      "answer": "Pas systématiquement. L'ouvrant et le châssis sont examinés pour conserver ce qui peut l'être et remplacer les parties réellement atteintes."
+    },
+    {
+      "question": "Travaillez-vous avec l'assurance ?",
+      "answer": "Décrivez les dégâts à Édouard pour préciser la réparation et son chiffrage. Les modalités de prise en charge restent à vérifier directement avec votre assurance."
+    }
+  ]
+},
+  meubles: {
+  "slug": "meubles",
+  "label": "Meubles",
+  "eyebrow": "Sur mesure · Mobilier",
+  "title": "Meuble sur mesure à Bordeaux, dessiné pour votre pièce",
+  "intro": "Un bureau qui va jusqu'au mur, une table rallongée pour recevoir, une étagère qui tient dans 40 cm : le sur mesure existe pour les pièces qui ne rentrent dans aucun catalogue.",
+  "image": "/images/bureau.jpg",
+  "alt": "Bureau en chêne avec tiroir, devant une fenêtre et un mur vert sauge",
+  "paragraphs": [
+    "On part souvent de peu de chose : une photo, un croquis sur un coin de nappe, un tronc d'arbre qu'on ne veut pas jeter. Je prends les mesures, je propose une solution réalisable, et on ajuste ensemble avant de couper la première planche.",
+    "Vous choisissez l'essence et la finition, je m'occupe du reste. Pendant la fabrication, je vous envoie des photos à chaque étape — utile quand vous êtes loin ou quand vous ne pouvez pas passer à l'atelier."
+  ],
+  "bullets": [
+    "Bureaux et plans de travail sur mesure",
+    "Tables de chevet, à partir d'une photo ou d'un tronc",
+    "Rallonges de table et agrandissement de plateau",
+    "Meubles à étagères avec rails",
+    "Meubles d'extérieur pour plantes",
+    "Montage de meubles et fixation murale",
+    "Rénovation d'espace alliant design moderne et charme de l'existant"
+  ],
+  "panels": [
+    {
+      "title": "Bureaux et plans de travail",
+      "text": "Bureau sur mesure dans un renfoncement, plateau en chêne, passage de câbles discret, tiroir en queue d'aronde. Un bureau qui s'adapte à la pièce plutôt que l'inverse."
+    },
+    {
+      "title": "Tables de chevet et petites pièces",
+      "text": "Une table de chevet à partir d'une simple photo, ou taillée dans un tronc d'arbre : chaque pièce est unique, dessinée pour sa place exacte, avec la bonne hauteur par rapport au lit."
+    },
+    {
+      "title": "Rallonges et tables de réception",
+      "text": "Rallonge de table pour les repas de famille, allongement d'un plateau existant dans la même essence et la même patine, pour que l'ajout ne se voie pas."
+    },
+    {
+      "title": "Meubles à étagères et rails",
+      "text": "Étagères sur mesure avec rails, bibliothèques qui épousent un mur irrégulier, meubles pour plantes à l'extérieur traité pour tenir dehors."
+    },
+    {
+      "title": "Rénovation d'espace",
+      "text": "Reprendre une pièce en gardant son charme : moulures, parquet, cheminée, et y poser un meuble résolument moderne. Le contraste est calculé, pas subi."
+    },
+    {
+      "title": "Montage de meubles",
+      "text": "Montage et fixation de meubles, y compris les pièces volumineuses ou mal conçues. Fixation sérieuse au mur, réglage des portes, ça ne bouge plus."
+    }
+  ],
+  "reviewKeys": [
+    "suivi",
+    "conseils"
+  ],
+  "related": [
+    "portes",
+    "volets",
+    "fenetres"
+  ],
+  "comparison": null,
+  "bulletTitle": "Ce que je prends en charge",
+  "faqs": [
+    {
+      "question": "Peut-on partir d'une simple photo ?",
+      "answer": "Oui. Une photo ou un croquis peut servir de point de départ. Les mesures et la solution sont ensuite ajustées ensemble avant la fabrication."
+    },
+    {
+      "question": "Quelles essences de bois proposez-vous ?",
+      "answer": "L'essence et la finition sont choisies ensemble selon le meuble et son usage. Le chêne figure parmi les exemples présentés ; le choix est précisé lors de l'étude du projet."
+    },
+    {
+      "question": "Est-ce que je peux suivre la fabrication ?",
+      "answer": "Oui. Des photos peuvent être envoyées à chaque étape de fabrication, notamment si vous êtes loin ou ne pouvez pas passer à l'atelier."
+    },
+    {
+      "question": "Combien coûte un meuble sur mesure ?",
+      "answer": "Le prix dépend des dimensions, de l'essence, des aménagements et de la finition. Un devis détaillé permet de chiffrer votre meuble avant de commencer."
+    }
+  ]
+},
+  placards: {
+  "slug": "placards",
+  "label": "Placards",
+  "eyebrow": "Sur mesure · Rangements",
+  "title": "Placards et dressings sur mesure à Bordeaux",
+  "intro": "Un placard sur mesure, ce n'est pas un meuble de plus : c'est de la place gagnée au centimètre, dans les murs qu'on a déjà.",
+  "image": "/images/placard.jpg",
+  "alt": "Placard de chambre en bois à portes verticales",
+  "paragraphs": [
+    "Sous un escalier, dans un renfoncement de couloir, autour d'une porte : les appartements bordelais ont souvent des recoins qui ne servent à rien. C'est exactement là que le sur mesure fait la différence.",
+    "Je relève les cotes au millimètre, en tenant compte des plinthes, des murs qui ne sont jamais droits et des interrupteurs. Le placard est ensuite fabriqué à l'atelier, puis posé en une journée dans la plupart des cas."
+  ],
+  "bullets": [
+    "Placards de chambre et d'entrée sur mesure",
+    "Dressings et rangements toute hauteur",
+    "Portes battantes, coulissantes ou staves",
+    "Aménagement intérieur (tringles, tiroirs, étagères)",
+    "Habillage de renfoncement, sous-escalier, niche"
+  ],
+  "panels": [
+    {
+      "title": "Placard de chambre",
+      "text": "Penderie, étagères, tiroirs : l'intérieur est organisé selon ce que vous rangez réellement, pas selon un module standard. Portes battantes, coulissantes ou staves, à choisir ensemble."
+    },
+    {
+      "title": "Placard d'entrée",
+      "text": "Un placard d'entrée bien fait règle le désordre du quotidien : manteaux, chaussures, sacs, boîte aux lettres intérieure. Peu de profondeur suffit quand tout est pensé."
+    },
+    {
+      "title": "Dressing",
+      "text": "Dressing sur mesure dans une pièce dédiée ou un pan de mur : hauteurs de tringle adaptées à vos vêtements, tiroirs, éclairage si besoin. Finitions choisies avec vous."
+    }
+  ],
+  "reviewKeys": [
+    "suivi"
+  ],
+  "related": [
+    "portes",
+    "volets",
+    "fenetres"
+  ],
+  "comparison": null,
+  "bulletTitle": "Ce que je prends en charge",
+  "faqs": [
+    {
+      "question": "Un placard sur mesure coûte-t-il beaucoup plus cher qu'un placard de grande surface ?",
+      "answer": "Le prix se précise avec les dimensions, les portes et l'aménagement intérieur. Un devis permet de comparer votre projet concret plutôt que d'annoncer un écart de prix général."
+    },
+    {
+      "question": "Combien de temps pour la pose ?",
+      "answer": "La pose se fait en une journée dans la plupart des cas présentés. La durée de votre projet est à confirmer selon ses dimensions et les contraintes du lieu."
+    },
+    {
+      "question": "Peut-on habiller un mur irrégulier ?",
+      "answer": "Oui, le relevé tient compte des murs qui ne sont pas droits, des plinthes et des interrupteurs. Le placard est fabriqué pour son emplacement exact."
+    }
+  ]
+},
+  depannage: {
+  "slug": "depannage",
+  "label": "Dépannage",
+  "eyebrow": "Dépannage · Urgence",
+  "title": "Dépannage menuiserie à Bordeaux",
+  "intro": "Une porte qui ne ferme plus, un volet qui menace de tomber, une fenêtre ouverte sur la rue : dans ces cas-là, on n'a pas besoin d'un devis à trois semaines.",
+  "image": "/images/hero-mains.jpg",
+  "alt": "Mains au travail sur une pièce de bois à l’atelier",
+  "paragraphs": [
+    "Je réponds vite, souvent le jour même quand c'est possible, et je vous dis honnêtement si ça peut attendre ou non. Le dépannage sert à remettre les choses en sécurité, pas à vous vendre une rénovation complète.",
+    "Après le passage, vous savez exactement ce qui a été fait et ce qui mériterait d'être repris plus tard, avec un chiffrage si vous le souhaitez."
+  ],
+  "bullets": [
+    "Porte qui ne ferme plus ou qui frotte",
+    "Réparation de porte vitrée",
+    "Fenêtre forcée après effraction",
+    "Volet intérieur ou extérieur décroché",
+    "Serrure à poser ou à remettre en service",
+    "Cimaise abîmée par un dégât des eaux"
+  ],
+  "panels": [
+    {
+      "title": "Portes et fenêtres bloquées",
+      "text": "Porte qui frotte, serrure qui ne claque plus, fenêtre qui ne joint pas : réglage, redressage, remplacement de la pièce qui a lâché. On repart sur une fermeture franche."
+    },
+    {
+      "title": "Dégâts des eaux et boiseries",
+      "text": "Réparation d'une cimaise abîmée par un dégât des eaux, reprise d'un bas de mur, d'une plinthe ou d'une moulure. Le bois est remplacé sur la partie atteinte seulement."
+    },
+    {
+      "title": "Sécuriser vite",
+      "text": "Volet arraché, vitrage cassé, ouvrant forcé : mise en sécurité provisoire puis réparation définitive. C'est le cas typique où il vaut mieux appeler que bricoler."
+    }
+  ],
+  "reviewKeys": [
+    "reactivite",
+    "sauve"
+  ],
+  "related": [
+    "portes",
+    "volets",
+    "fenetres"
+  ],
+  "comparison": null,
+  "bulletTitle": "Cas d'intervention courants",
+  "faqs": [
+    {
+      "question": "Intervenez-vous le jour même ?",
+      "answer": "Édouard répond vite, souvent le jour même quand c'est possible. Appelez pour expliquer la situation : la possibilité d'un passage doit être confirmée, elle n'est pas garantie."
+    },
+    {
+      "question": "Y a-t-il un tarif de déplacement ?",
+      "answer": "Les conditions de déplacement sont à préciser lors du premier échange, selon le lieu et l'intervention. Aucun tarif de déplacement fixe n'est annoncé ici."
+    },
+    {
+      "question": "Que faire en attendant votre passage ?",
+      "answer": "Pour un volet arraché, un vitrage cassé ou un ouvrant forcé, appelez plutôt que de bricoler. Décrivez la situation pour organiser la mise en sécurité et la réparation adaptées."
+    }
+  ]
+},
+};
