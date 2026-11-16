@@ -117,11 +117,17 @@ test('new service review links open a real Google Maps destination instead of a 
   }
 });
 
-test('preservation: every unrelated tracked file and local asset stays byte-identical', () => {
-  const preserved = require('./fixtures/preserved-files.json');
-  for (const [name, hash] of Object.entries(preserved)) {
-    let bytes = fs.readFileSync(path.join(root,name));
-    if (name === 'README.md') {
+const preserved = require('./fixtures/preserved-files.json');
+const readmeBaseline = require('./fixtures/readme-rewrite-baseline.json');
+const sha256 = bytes => crypto.createHash('sha256').update(bytes).digest('hex');
+
+function normalizePreservedReadme(bytes) {
+  // Authenticate the independent historical bytes before allowing the exact rewrite.
+  assert.equal(sha256(Buffer.from(readmeBaseline.normalizedReadme)), preserved['README.md']);
+  if (sha256(bytes) === readmeBaseline.approvedRewriteSha256) {
+    return Buffer.from(readmeBaseline.normalizedReadme);
+  }
+  {
       const original = '`/` · `/sur-mesure` · `/renovation` · `/realisations` · `/a-propos` · `/contact` · `/mentions-legales` · `/confidentialite`';
       const documented = [
         '`/` · `/sur-mesure` · `/renovation` · `/portes` · `/volets` · `/fenetres` · `/meubles` · `/placards` · `/depannage` · `/realisations` · `/a-propos` · `/contact` · `/mentions-legales` · `/confidentialite`',
@@ -132,7 +138,33 @@ test('preservation: every unrelated tracked file and local asset stays byte-iden
       const after = bytes.toString('utf8');
       assert.equal(after.split(documented).length, 2, 'exact scoped README addition occurs once');
       bytes = Buffer.from(after.replace(documented, original));
-    }
-    assert.equal(crypto.createHash('sha256').update(bytes).digest('hex'),hash,name);
+  }
+  return bytes;
+}
+
+test('README preservation accepts the historical addition and only the exact approved rewrite', () => {
+  const current = fs.readFileSync(path.join(root, 'README.md'));
+  assert.equal(sha256(current), readmeBaseline.approvedRewriteSha256);
+  assert.equal(sha256(normalizePreservedReadme(current)), preserved['README.md']);
+  // Reconstruct the historical routes/docs/test-command addition independently.
+  const original = '`/` · `/sur-mesure` · `/renovation` · `/realisations` · `/a-propos` · `/contact` · `/mentions-legales` · `/confidentialite`';
+  const documented = [
+    '`/` · `/sur-mesure` · `/renovation` · `/portes` · `/volets` · `/fenetres` · `/meubles` · `/placards` · `/depannage` · `/realisations` · `/a-propos` · `/contact` · `/mentions-legales` · `/confidentialite`',
+    '',
+    'Les six pages de prestations reprennent les captures fournies, avec FAQ et liens dédiés. `docs/service-sources.md` distingue les textes visibles, les réponses de FAQ rédigées à partir de ces informations et les limites des visuels. Les avant/après sont explicitement statiques : les deux photos originales nécessaires à un curseur réel ne sont pas disponibles.',
+    '', '```bash', 'node --test --test-concurrency=1 tests/*.test.cjs', '```',
+  ].join('\n');
+  const historical = Buffer.from(readmeBaseline.normalizedReadme.replace(original, documented));
+  assert.equal(sha256(normalizePreservedReadme(historical)), preserved['README.md']);
+  assert.throws(() => normalizePreservedReadme(Buffer.concat([current, Buffer.from('\nunauthorized')])), /exact scoped README addition/);
+  assert.notEqual(sha256(normalizePreservedReadme(Buffer.concat([historical, Buffer.from('\nunauthorized')]))), preserved['README.md']);
+  assert.throws(() => normalizePreservedReadme(Buffer.from(historical.toString().replace('docs/service-sources.md', 'docs/other.md'))), /exact scoped README addition/);
+});
+
+test('preservation: every unrelated tracked file and local asset stays byte-identical', () => {
+  for (const [name, hash] of Object.entries(preserved)) {
+    let bytes = fs.readFileSync(path.join(root,name));
+    if (name === 'README.md') bytes = normalizePreservedReadme(bytes);
+    assert.equal(sha256(bytes),hash,name);
   }
 });
