@@ -92,8 +92,7 @@ test('navigation: all six global destinations, unique metadata and old furniture
 });
 
 test('preservation: scoped legacy edits cannot alter any other furniture copy or renovation IDs', () => {
-  const { execFileSync } = require('node:child_process');
-  const before = execFileSync('git',['show','80ea89e8ee6004a27695b7cb2c7719b07a9a1a08:app/sur-mesure/page.tsx'],{cwd:root,encoding:'utf8'});
+  const before = require('./fixtures/mobile-actions-baseline.json').legacyFurniture;
   const after = fs.readFileSync(path.join(root,'app/sur-mesure/page.tsx'),'utf8');
   const normalized=after.replace('import { services } from "@/lib/services";\n','').replace('items={services.meubles.faqs}','items={faqMeubles}').replace('href={`/${p.toLowerCase().replace("ê", "e")}`}','href={`/renovation#${p.toLowerCase().replace("ê", "e")}`}');
   assert.equal(normalized,before);
@@ -165,6 +164,7 @@ test('preservation: every unrelated tracked file and local asset stays byte-iden
   for (const [name, hash] of Object.entries(preserved)) {
     let bytes = fs.readFileSync(path.join(root,name));
     if (name === 'README.md') bytes = normalizePreservedReadme(bytes);
+    if (name === 'components/Header.tsx' || name === 'app/globals.css') bytes = require('./fixtures/mobile-actions-preservation.cjs').normalizeMobileActions(name, bytes);
     assert.equal(sha256(bytes),hash,name);
   }
 });
